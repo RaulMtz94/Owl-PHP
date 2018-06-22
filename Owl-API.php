@@ -1,6 +1,8 @@
 ﻿<?php
 class Ontology{
     public $ontology;
+
+    //ESTA FUNCION RECIBE LA URL DE LA ONTOLOGIA (Constructor)
             public function Ontology($url){
                 //Validar que la ruta exista
                 if(file_exists($url) === FALSE){
@@ -139,6 +141,9 @@ class Ontology{
             } 
             return null;
         }
+
+
+//FUNCION QUE PERMITE OBTENER TODOS LOS INDIVIDUOS DE LA ONTOLOGIA
         function getAllIndividuals(){
             if (strpos($this->ontology, 'owl:NamedIndividual') !== false) {
                 $array_individual = array();
@@ -153,6 +158,7 @@ class Ontology{
             } 
             return $array_individual;
         }
+//FUNCION QUE PERMITE OBTENER DETERMINADO INDIVIDUO DE LA ONTOLOGIA
         function getIndividual($individual){
             if (strpos($this->ontology, 'owl:NamedIndividual') !== false) {
                 preg_match_all('/:[a-zA-Z]+[a-zA-Z0-9]*\s(rdf:type owl:NamedIndividual ,)+[\sa-z0-9A-ZñÑáéíóúÁÉÍÓÚ"^:;.]*/', $this->ontology, $coincidencias);
